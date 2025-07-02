@@ -31,7 +31,10 @@
                 <p class="font-light">Welcome to My Instagram Guys!</p>
                 <div class="mt-4 w-full flex">
                     <button type="button" class=" w-[50%] text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 focus:outline-none">Edit Profile</button>
-                    <button type="button" class=" w-[50%] text-black bg-white border border-gray-500 hover:bg-gray-500 hover:text-white focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 focus:outline-none">Profile Statistic</button>
+                    <form action="{{ route('logout') }}" method="POST" class="w-[50%]">
+                        @csrf
+                        <button type="submit" class=" w-full text-black bg-white border border-gray-500 hover:bg-gray-500 hover:text-white focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 focus:outline-none">Logout</button>
+                    </form>
                 </div>
             </div>
             <div class="mt-5 flex gap-8">
