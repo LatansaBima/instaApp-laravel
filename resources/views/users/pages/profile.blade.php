@@ -47,14 +47,12 @@
                 <div class="bg-gray-600 border border-gray-400 rounded-full size-[65px]"></div>
             </div>
         </div>
-        <div class="profile-post w-full grid grid-cols-3 gap-2 mt-6">
-                <div class="bg-gray-600 h-[200px]"></div>
-                <div class="bg-gray-600 h-[200px]"></div>
-                <div class="bg-gray-600 h-[200px]"></div>
-                <div class="bg-gray-600 h-[200px]"></div>
-                <div class="bg-gray-600 h-[200px]"></div>
-                <div class="bg-gray-600 h-[200px]"></div>
-            </div>
-        </div>
+        <div class="profile-post w-full flex-1 grid grid-cols-3 grid-rows-[auto_1fr_auto] gap-1 mt-8 bg-gray-100">
+                @foreach ($posts as $post)
+                <div class="border border-gray-200">
+                    <img src="{{ route('image.show', $post->image)}}" alt="" class="h-full w-full object-cover">
+                </div>
+                @endforeach
+        </div>    
     </section>
 @endsection
