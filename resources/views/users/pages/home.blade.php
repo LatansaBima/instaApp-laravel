@@ -12,7 +12,7 @@
                 <div class="card-profile p-4 flex items-center justify-between gap-3">
                     <div class="left flex items-center gap-3">
                         <img src="{{ asset('img/profile.jpg') }}" alt="" class="w-10 rounded-full">
-                        <p>Latansa Bima</p>
+                        <p>{{$post->user->name}}</p>
                     </div>
                     <div class="right">
                         <i class="ri-more-fill"></i>
@@ -25,7 +25,7 @@
                 <div class="card-action px-4 py-1 flex items-center gap-4">
                     <div class="flex items-center gap-1">
                         <i class="ri-heart-line"></i>
-                        <p>10</p>
+                        <p>{{$post->likes->count()}}</p>
                     </div>
                     <div class="flex items-center gap-1">
                         <i class="ri-chat-1-line"></i>

@@ -4,7 +4,7 @@
     <section class="w-full flex flex-col justify-center">
         <div class="top-profile w-full px-4">
             <div class="profile-action flex items-center w-full justify-between py-6">
-                <p class="text-lg font-semibold">Latansa Bima Amanta</p>
+                <p class="text-lg font-semibold">{{ Auth::user()->name }}</p>
                 <i class="ri-settings-3-line text-2xl"></i>
             </div>
             <div class="profile-stats flex mt-2">
@@ -13,7 +13,7 @@
                 </div>
                 <div class="flex-1 flex justify-start items-center gap-12 pl-8">
                     <div class="text-center">
-                        <p class="font-bold">12</p>
+                        <p class="font-bold">{{$posts->count()}}</p>
                         <p>Post</p>
                     </div>
                     <div class="text-center">
