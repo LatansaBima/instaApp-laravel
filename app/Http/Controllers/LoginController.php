@@ -34,6 +34,11 @@ class LoginController extends Controller
         ])->onlyInput('email');
     }
 
+    public function register()
+    {
+        
+    }
+
     public function logout(Request $request)
     {
         Auth::logout();
