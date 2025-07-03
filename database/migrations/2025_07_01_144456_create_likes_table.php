@@ -18,6 +18,9 @@ return new class extends Migration
             $table->foreign('id_post')->references('id_post')->on('posts')->onDelete('cascade');
             $table->foreign('id_user')->references('id_user')->on('users')->onDelete('cascade');            
             $table->timestamps();
+            
+            // Ensure a user can only like a post once
+            $table->unique(['id_post', 'id_user']);
         });
     }
 

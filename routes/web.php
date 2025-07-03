@@ -18,6 +18,10 @@ Route::post('/authenticate', [LoginController::class, 'authenticate'])->name('lo
 Route::middleware(['auth'])->group(function () {
     Route::get('/homepage', [HomepageController::class, 'index'])->name('homepage.index');
     Route::resource('post', PostController::class);
+    Route::post('/post/{postId}/like', [PostController::class, 'like'])->name('post.like');
+    Route::post('/post/{postId}/unlike', [PostController::class, 'unlike'])->name('post.unlike');
+    Route::post('/post/{postId}/comment', [PostController::class, 'storeComment'])->name('post.comment');
+    Route::get('/post/{postId}/comments', [PostController::class, 'getComments'])->name('post.comments');
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
 
     Route::get('/image/{filename}', [ImageController::class, 'showImage'])->name('image.show');
