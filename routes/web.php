@@ -27,6 +27,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/post/{postId}/comment', [PostController::class, 'storeComment'])->name('post.comment');
     Route::get('/post/{postId}/comments', [PostController::class, 'getComments'])->name('post.comments');
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
+    Route::get('/profile/{userId}', [ProfileController::class, 'show'])->name('profile.show');
 
     Route::get('/image/{filename}', [ImageController::class, 'showImage'])->name('image.show');
 

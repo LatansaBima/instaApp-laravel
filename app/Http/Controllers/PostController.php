@@ -32,22 +32,28 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        $validate = $request->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg|max:10280',
-            'text' => 'required'
-        ]);
+        try {
+            $validate = $request->validate([
+                'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:10280',
+                'text' => 'required|max:500'
+            ]);
 
-        $image = $request->file('image');
-        $imageName = $image->getClientOriginalName();
-        $image->storeAs('post', $imageName);
+            $image = $request->file('image');
+            $imageName = time() . '_' . $image->getClientOriginalName();
+            $image->storeAs('post', $imageName);
 
-        Post::create([
-            'id_user' => Auth::id(),
-            'image' => $imageName,
-            'text' => $request->text
-        ]);
+            Post::create([
+                'id_user' => Auth::user()->id_user,
+                'image' => $imageName,
+                'text' => $request->text
+            ]);
 
-        return redirect()->back();
+            return redirect()->back()->with('success', 'Post berhasil dibuat!');
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return redirect()->back()->with('error', 'Gagal membuat post: ' . implode(', ', $e->validator->errors()->all()))->withInput();
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Terjadi kesalahan: ' . $e->getMessage())->withInput();
+        }
     }
 
     /**

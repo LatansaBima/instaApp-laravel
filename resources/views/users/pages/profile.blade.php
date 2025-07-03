@@ -4,8 +4,17 @@
     <section class="w-full flex flex-col justify-center">
         <div class="top-profile w-full px-4">
             <div class="profile-action flex items-center w-full justify-between py-6">
-                <p class="text-lg font-semibold">{{ Auth::user()->name }}</p>
-                <i class="ri-settings-3-line text-2xl"></i>
+                <div class="flex items-center gap-3">
+                    @if(isset($isOwnProfile) && !$isOwnProfile)
+                        <a href="{{ route('profile.index') }}" class="text-blue-500 hover:underline">
+                            <i class="ri-arrow-left-line text-xl"></i>
+                        </a>
+                    @endif
+                    <p class="text-lg font-semibold">{{ $user->name }}</p>
+                </div>
+                @if(!isset($isOwnProfile) || $isOwnProfile)
+                    <i class="ri-settings-3-line text-2xl"></i>
+                @endif
             </div>
             <div class="profile-stats flex mt-2">
                 <div class="w-[90px]">
@@ -27,14 +36,21 @@
                 </div>
             </div>
             <div class="mt-6 font-medium">
-                <p class="font-extrabold text-lg">Labim | Engineer</p>
+                <p class="font-extrabold text-lg">{{ $user->name }} | Engineer</p>
                 <p class="font-light">Welcome to My Instagram Guys!</p>
                 <div class="mt-4 w-full flex">
-                    <button type="button" class=" w-[50%] text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 focus:outline-none">Edit Profile</button>
-                    <form action="{{ route('logout') }}" method="POST" class="w-[50%]">
-                        @csrf
-                        <button type="submit" class=" w-full text-black bg-white border border-gray-500 hover:bg-gray-500 hover:text-white focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 focus:outline-none">Logout</button>
-                    </form>
+                    @if(!isset($isOwnProfile) || $isOwnProfile)
+                        <!-- Own profile buttons -->
+                        <button type="button" class=" w-[50%] text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 focus:outline-none">Edit Profile</button>
+                        <form action="{{ route('logout') }}" method="POST" class="w-[50%]">
+                            @csrf
+                            <button type="submit" class=" w-full text-black bg-white border border-gray-500 hover:bg-gray-500 hover:text-white focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 focus:outline-none">Logout</button>
+                        </form>
+                    @else
+                        <!-- Other user's profile buttons -->
+                        <button type="button" class=" w-[50%] text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 focus:outline-none">Follow</button>
+                        <button type="button" class=" w-[50%] text-black bg-white border border-gray-500 hover:bg-gray-500 hover:text-white focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 focus:outline-none">Message</button>
+                    @endif
                 </div>
             </div>
             <div class="mt-5 flex gap-8">

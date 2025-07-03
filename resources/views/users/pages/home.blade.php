@@ -12,7 +12,9 @@
                 <div class="card-profile p-4 flex items-center justify-between gap-3">
                     <div class="left flex items-center gap-3">
                         <img src="{{ asset('img/profile.jpg') }}" alt="" class="w-10 rounded-full">
-                        <p>{{$post->user->name}}</p>
+                        <a href="{{ route('profile.show', $post->user->id_user) }}" class="font-medium hover:underline">
+                            {{$post->user->name}}
+                        </a>
                     </div>
                     <div class="right">
                         <i class="ri-more-fill"></i>
@@ -20,9 +22,12 @@
                 </div>
                 <div class="card-content">
                     <img src="{{ route('image.show', $post->image) }}" alt="" class="w-full">
-                    <p class="mt-3 px-4">{{ $post->text }}</p>
+                    <div class="flex">
+                        <p class="mt-5 px-4 font-medium"> {{ $post->user->name}}</p>
+                        <p class="mt-5 px-4 ml-[-18px]"> {{ $post->text }} </p>
+                    </div>
                 </div>
-                <div class="card-action px-4 py-1 flex items-center gap-4">
+                <div class="card-action px-4 mt-[-5px] flex items-center gap-4">
                     <div class="flex items-center gap-1">
                         <button class="like-btn" data-post-id="{{ $post->id_post }}" 
                                 data-is-liked="{{ $post->is_liked ? 'true' : 'false' }}">
